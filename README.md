@@ -5,6 +5,27 @@ This project implements two complementary approaches for studying the SSH-Hubbar
 1. **DMRG (Density Matrix Renormalization Group)**: Classical exact diagonalization for up to 8 sites
 2. **VQE (Variational Quantum Eigensolver)**: Quantum-inspired algorithm with topology-aware ansätze
 
+## Repository Structure
+
+```
+morriis_project/
+├── src/                          # Source code
+│   ├── ssh_hubbard_vqe.py       # Main VQE implementation
+│   ├── ssh_hubbard_tn_vqe.py    # Tensor network VQE
+│   ├── ssh_hubbard_tenpy_dmrg_fixed.py  # DMRG solver
+│   ├── compare_all_ansatze.py   # Ansatz comparison script
+│   ├── benchmark_large_systems.py  # System benchmarking
+│   └── run_longer_optimizations.py  # Extended optimization runs
+├── results/                      # Output files (plots, CSVs)
+├── docs/                         # Documentation
+│   ├── IMPLEMENTATION_SUMMARY.md
+│   ├── DMRG_STATUS.md
+│   ├── REPOSITORY_FULL_CONTEXT.txt
+│   └── dmrg_test_fixed.txt
+├── README.md                     # This file
+└── requirements.txt              # Python dependencies
+```
+
 ## Physics Background
 
 ### SSH Model (Su-Schrieffer-Heeger)
@@ -92,6 +113,12 @@ The `ssh_hubbard_vqe.py` script implements a Variational Quantum Eigensolver for
 
 ## Usage
 
+All scripts should be run from the `src/` directory:
+
+```bash
+cd src/
+```
+
 ### Basic Single-Point Calculations
 
 ```bash
@@ -163,7 +190,7 @@ Every VQE run includes exact diagonalization for validation:
 
 ### Output Files
 
-All results are saved to `../results/`:
+All results are saved to the `results/` directory (located at `../results/` relative to `src/`):
 - Circuit diagrams: `L{L}_{ansatz}_circuit.png`
 - Energy convergence: `L{L}_{ansatz}_energy_convergence.png`
 - Error convergence (log scale): `L{L}_{ansatz}_error_log.png`
@@ -277,15 +304,23 @@ The SSH model exhibits a topological phase transition at δ=0:
 
 ### Comparing Ansätze
 
-Run all three ansätze on the same system:
+Run all three ansätze on the same system from the `src/` directory:
 
 ```bash
+cd src/
 for ansatz in hea hva topoinsp; do
     python ssh_hubbard_vqe.py --ansatz $ansatz --L 6 --reps 3 --U 2.0
 done
 ```
 
-Compare results in `../results/` directory.
+Or use the comparison script:
+
+```bash
+cd src/
+python compare_all_ansatze.py
+```
+
+Compare results in the `results/` directory.
 
 ### Topological Phase Diagram
 
@@ -340,15 +375,16 @@ Total measurement count: ~(1 + L) circuits for full observable set
 
 ## Usage
 
-Run the DMRG simulation:
+Run the DMRG simulation from the `src/` directory:
 
 ```bash
-python dmrg_ssh_hubbard.py
+cd src/
+python ssh_hubbard_tenpy_dmrg_fixed.py
 ```
 
 ### Customizing Parameters
 
-Edit the `main()` function in `dmrg_ssh_hubbard.py`:
+Edit the `main()` function in `src/ssh_hubbard_tenpy_dmrg_fixed.py`:
 
 ```python
 L = 8          # Number of sites
