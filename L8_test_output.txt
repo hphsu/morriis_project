@@ -1,0 +1,75 @@
+################################################################################
+# LARGE SYSTEM BENCHMARKS: L=6 and L=8
+################################################################################
+
+
+################################################################################
+# TEST: L=6, Standard (δ=0.33, U=2.0)
+################################################################################
+
+================================================================================
+BENCHMARK: L=6 sites (12 qubits), δ=0.333, U=2.00
+================================================================================
+
+Building Hamiltonian...
+  Pauli terms: 39
+
+Computing exact ground state...
+  E_exact = -4.0107137460
+  E/site  = -0.6684522910
+
+--------------------------------------------------------------------------------
+Running VQE for all ansätze...
+--------------------------------------------------------------------------------
+
+[HEA]
+  Circuit: 72 params, depth 19
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -3.0704472477
+  ✓ Error:       9.403e-01 (23.44%)
+  ✓ Evaluations: 8395
+  ✓ Runtime:     89.39s
+
+[HVA]
+  Circuit: 32 params, depth 11
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -3.1501834792
+  ✓ Error:       8.605e-01 (21.46%)
+  ✓ Evaluations: 7260
+  ✓ Runtime:     60.87s
+
+[TOPOINSP]
+  Circuit: 48 params, depth 10
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -2.7238037188
+  ✓ Error:       1.287e+00 (32.09%)
+  ✓ Evaluations: 5047
+  ✓ Runtime:     47.87s
+
+[TOPO_RN]
+  Circuit: 72 params, depth 24
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -3.1248853272
+  ✓ Error:       8.858e-01 (22.09%)
+  ✓ Evaluations: 12483
+  ✓ Runtime:     197.62s
+
+[DQAP]
+  Circuit: 6 params, depth 11
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -3.0551132771
+  ✓ Error:       9.556e-01 (23.83%)
+  ✓ Evaluations: 504
+  ✓ Runtime:     4.12s
+
+[NP_HVA]
+  Circuit: 52 params, depth 27
+  Running VQE (maxiter=200)...
+  ✓ Energy:      -3.7310273784
+  ✓ Error:       2.797e-01 (6.97%)
+  ✓ Evaluations: 11607
+  ✓ Runtime:     164.80s
+
+[TN_MPS]
+  Circuit: 312 params, depth 37
+  Running VQE (maxiter=200)...
